@@ -1,6 +1,6 @@
 ﻿{
   "name": "com.jcommonutils.unity",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Common Utils",
   "description": "A set of utility methods for Unity projects.",
   "unity": "2020.3",
