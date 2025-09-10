@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CommonUtils
+namespace Extensions
 {
     public static class DictionaryExtensions
     {
@@ -12,10 +12,10 @@ namespace CommonUtils
             this Dictionary<TKey, TValue> source,
             Dictionary<TKey, TValue> other)
         {
-            // if (other.IsNullOrEmpty())
-            // {
-            //     return;
-            // }
+            if (other.IsNullOrEmpty())
+            {
+                return;
+            }
             foreach (var kvp in other)
             {
                 source.MergeValue(kvp.Key, kvp.Value);
