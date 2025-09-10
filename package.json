@@ -1,0 +1,11 @@
+﻿{
+  "name": "com.yourname.commonutils",
+  "version": "1.0.0",
+  "displayName": "Common Utils",
+  "description": "A set of utility methods for Unity projects.",
+  "unity": "2020.3",
+  "author": {
+    "name": "Your Name",
+    "url": "https://github.com/yourname"
+  }
+}
