@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Hotfix.Config
+namespace CommonUtils
 {
     public static class DictionaryExtensions
     {
