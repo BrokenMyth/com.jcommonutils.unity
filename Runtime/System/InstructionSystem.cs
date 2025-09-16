@@ -30,7 +30,90 @@ namespace CommonUtils.System
     {
         public class Context
         {
-            public List<object> parameters = new();
+            public List<object> Arguments = new();
+
+            /// <summary>
+            /// </summary>
+            public bool TryParseArgument<T>(out T count)
+            {
+                count = default;
+                if (Arguments.Count <= 0) return false;
+
+                return TryParse(Arguments[0].ToString(), out count);
+            }
+
+            /// <summary>
+            /// </summary>
+            public bool TryParseArgument<T>(out T count, out T count1)
+            {
+                count = default;
+                count1 = default;
+                if (Arguments.Count <= 1) return false;
+
+                return TryParse(Arguments[0].ToString(), out count) && TryParse(Arguments[1].ToString(), out count1);
+            }
+
+            /// <summary>
+            ///     TryParseArguments 方法
+            /// </summary>
+            public bool TryParseArguments<T>(out List<T> values)
+            {
+                values = new List<T>();
+                if (Arguments.Count == 0) return false;
+                for (var i = 0; i < Arguments.Count; i++)
+                    if (TryParse(Arguments[i].ToString(), out T parsedValue))
+                        values.Add(parsedValue);
+                    else
+                        return false;
+
+                return true;
+            }
+
+            private bool TryParse<T>(string input, out T value)
+            {
+                value = default;
+                try
+                {
+                    if (typeof(T) == typeof(int))
+                    {
+                        if (int.TryParse(input, out var intValue))
+                        {
+                            value = (T)(object)intValue;
+                            return true;
+                        }
+                    }
+                    else if (typeof(T) == typeof(long))
+                    {
+                        if (long.TryParse(input, out var intValue))
+                        {
+                            value = (T)(object)intValue;
+                            return true;
+                        }
+                    }
+                    else if (typeof(T) == typeof(double))
+                    {
+                        if (double.TryParse(input, out var doubleValue))
+                        {
+                            value = (T)(object)doubleValue;
+                            return true;
+                        }
+                    }
+                    else if (typeof(T) == typeof(bool))
+                    {
+                        if (bool.TryParse(input, out var boolValue))
+                        {
+                            value = (T)(object)boolValue;
+                            return true;
+                        }
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+
+                return false;
+            }
         }
 
         public Dictionary<Instruction, bool> Instructions = new();
@@ -99,7 +182,7 @@ namespace CommonUtils.System
                 return null;
             }
 
-            return InstructionsActions[m]?.Invoke(new Context { parameters = objects });
+            return InstructionsActions[m]?.Invoke(new Context { Arguments = objects });
         }
     }
 
