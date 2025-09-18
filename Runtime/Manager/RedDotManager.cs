@@ -59,7 +59,7 @@ namespace Manager
         }
     }
 
-    public class RedDotManager<T> : Singleton<RedDotManager<T>>
+    public class RedDotManager<T> : Singleton<RedDotManager<T>> where T : class
     {
         private RedDotNode<T> _root; //根节点,一般是画布,不会有红点
         public Action<RedDotNode<T>, int> onValueChanged; // 监听值变化（UI 会绑定这个）
@@ -94,7 +94,17 @@ namespace Manager
         }
 
         /// <summary>
-        ///     注册并刷新红点
+        ///     注册并刷新红点(父UI默认根节点)
+        /// </summary>
+        /// <param name="ui">子 UI</param>
+        /// <param name="ui">子 UI 的红点数</param>
+        /// <returns>RETURNS</returns>
+        public RedDotNode<T> Register(T ui, int count = 0)
+        {
+            return Register(null, ui, count);
+        }
+        /// <summary>
+        ///     注册并刷新红点(如果父 UI没注册过,默认注册到_root下)
         /// </summary>
         /// <param name="p">父 UI</param>
         /// <param name="ui">子 UI</param>
@@ -103,12 +113,11 @@ namespace Manager
         public RedDotNode<T> Register(T p, T ui, int count = 0)
         {
             var node = _root;
-            if (RedDotNodeCache.TryGetValue(p, out var nodeCache))
-                node = nodeCache;
-            else
-                node = node.GetOrAddChild(p);
-
-            RedDotNodeCache[p] = node;
+            if (p != null)
+            {
+                node = RedDotNodeCache.TryGetValue(p, out var nodeCache) ? nodeCache : node.GetOrAddChild(p);
+                RedDotNodeCache[p] = node;
+            }
             node = node.GetOrAddChild(ui);
             RedDotNodeCache[ui] = node;
             node.SetCount(count);
