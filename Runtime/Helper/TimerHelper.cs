@@ -1,9 +1,30 @@
 ﻿using System;
+using UnityEngine;
 
 namespace CommonUtils.Helper
 {
     public static class TimerHelper
     {
+        /// <summary>
+        ///     设置今日不再弹出,true 不再弹出 , false 可以弹出
+        /// </summary>
+        public static void SetNotOpenToday(string key, bool open = true)
+        {
+            var value = -1;
+            if (open) value = DateTime.UtcNow.Date.DayOfYear;
+            PlayerPrefs.SetInt(key, value);
+        }
+
+        /// <summary>
+        ///     今日不再弹出?
+        /// </summary>
+        public static bool IsNotOpenToday(string key)
+        {
+            var colseDay = PlayerPrefs.GetInt(key, -1);
+            if (colseDay == DateTime.UtcNow.Date.DayOfYear) return true;
+
+            return false;
+        }
         /// <summary>
         ///     当前UTC 时间 秒时间戳
         /// </summary>

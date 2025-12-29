@@ -5,6 +5,16 @@ namespace Extensions
 {
     public static class DictionaryExtensions
     {
+        public static Dictionary<TKey, TValue> Clone<TKey, TValue>(this Dictionary<TKey, TValue> source)
+        {
+            Dictionary<TKey, TValue> newDict = new Dictionary<TKey, TValue>();
+            foreach (var keyValuePair in source)
+            {
+                newDict.Add(keyValuePair.Key, keyValuePair.Value);
+            }
+
+            return newDict;
+        }
         /// <summary>
         /// 
         /// </summary>
