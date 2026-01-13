@@ -11,7 +11,16 @@ namespace BepInExHelper
     public class PlayerDataList
     {
         public List<int> list;
+        private string jsonpath;
 
+        public PlayerDataList()
+        {
+        }
+
+        public PlayerDataList(string path)
+        {
+            jsonpath = path;
+        }
         public void Click(int id)
         {
             if (!list.Contains(id))
@@ -31,17 +40,25 @@ namespace BepInExHelper
             list.RemoveAll(x => x == id);
         }
 
+        public void Save()
+        {
+            Save(jsonpath);
+        }
         public void Save(string path)
         {
             JsonHelper.SaveToJson(path, this);
         }
 
+        public void Load()
+        {
+            Load(jsonpath);
+        }
         public void Load(string path)
         {
             var data = JsonHelper.LoadFromJsonOrNull<PlayerDataList>(path);
             if (data == null)
             {
-                data = new PlayerDataList
+                data = new PlayerDataList(path)
                 {
                     list = new List<int>()
                 };
