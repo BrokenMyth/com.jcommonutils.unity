@@ -1,6 +1,8 @@
 ﻿{
     "name": "CommonUtils",
-    "references": [],
+    "references": [
+        "Newtonsoft.Json"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

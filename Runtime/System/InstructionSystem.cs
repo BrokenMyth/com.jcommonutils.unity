@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Extensions;
 using UnityEngine;
 
-namespace CommonUtils.System
+namespace System
 {
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class InstructionAttribute : Attribute

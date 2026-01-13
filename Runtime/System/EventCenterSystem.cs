@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace CommonUtils.System
+namespace System
 {
     /// <summary>
     ///     事件接口

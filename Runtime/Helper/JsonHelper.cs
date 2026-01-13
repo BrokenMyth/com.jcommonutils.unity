@@ -1,8 +1,8 @@
 ﻿using System.IO;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 using UnityEngine;
 
-namespace CommonUtils.Helper
+namespace Helper
 {
     public static class JsonHelper
     {

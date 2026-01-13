@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CommonUtils.Helper
+namespace Helper
 {
     public static class TimerHelper
     {

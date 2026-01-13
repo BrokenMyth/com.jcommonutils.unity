@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Timers;
-using CommonUtils;
-using CommonUtils.Helper;
+using Helper;
 using UnityEngine;
 
 namespace Manager
