@@ -65,6 +65,11 @@ namespace BepInExHelper
                 Save(path);
             }
 
+            if (data.list == null)
+            {
+                data.list = new List<int>();
+            }
+            
             list = data.list;
         }
     }
