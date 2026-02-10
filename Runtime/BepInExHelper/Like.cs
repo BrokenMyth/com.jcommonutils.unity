@@ -10,7 +10,7 @@ namespace BepInExHelper
     [Serializable]
     public class PlayerDataList
     {
-        public List<int> list;
+        public List<string> list;
         private string jsonpath;
 
         public PlayerDataList()
@@ -21,7 +21,7 @@ namespace BepInExHelper
         {
             jsonpath = path;
         }
-        public void Click(int id)
+        public void Click(string id)
         {
             if (!list.Contains(id))
                 list.Add(id);
@@ -29,13 +29,13 @@ namespace BepInExHelper
                 Remove(id);
         }
 
-        public void Add(int id)
+        public void Add(string id)
         {
             if (!list.Contains(id))
                 list.Add(id);
         }
 
-        public void Remove(int id)
+        public void Remove(string id)
         {
             list.RemoveAll(x => x == id);
         }
@@ -60,14 +60,14 @@ namespace BepInExHelper
             {
                 data = new PlayerDataList(path)
                 {
-                    list = new List<int>()
+                    list = new List<string>()
                 };
                 Save(path);
             }
 
             if (data.list == null)
             {
-                data.list = new List<int>();
+                data.list = new List<string>();
             }
             
             list = data.list;
