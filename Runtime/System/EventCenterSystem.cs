@@ -66,9 +66,10 @@ namespace System
         /// </summary>
         public void Unsubscribe<T>(Action<T> func) where T : IEvent
         {
-            if (m_EventHandlers.TryGetValue(typeof(T), out var funcs) == false) return;
+            List<Delegate> funcs = null;
+            if (m_EventHandlers?.TryGetValue(typeof(T), out funcs) == false) return;
 
-            funcs.Remove(func);
+            funcs?.Remove(func);
         }
     }
 }
