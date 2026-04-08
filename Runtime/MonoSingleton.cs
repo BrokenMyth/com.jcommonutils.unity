@@ -22,8 +22,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 if (instances.Length > 0)
                 {
                     _instance = instances[0];
-                    for (int i = 1; i < instances.Length; i++)
-                        Destroy(instances[i].gameObject);
                     return _instance;
                 }
 
@@ -40,10 +38,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             _instance = this as T;
             DontDestroyOnLoad(gameObject);
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
         }
     }
 
