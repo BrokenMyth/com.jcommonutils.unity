@@ -6,6 +6,9 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     private static readonly object _lock = new object();
     private static bool _applicationIsQuitting;
 
+    protected virtual bool PersistAcrossScenes => false;
+    protected virtual bool DestroyDuplicateInstance => false;
+
     public static T Instance
     {
         get
@@ -34,11 +37,30 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
+        T current = this as T;
+        if (current == null)
+            return;
+
         if (_instance == null)
         {
-            _instance = this as T;
-            // DontDestroyOnLoad(gameObject);
+            _instance = current;
+            if (PersistAcrossScenes)
+                DontDestroyOnLoad(gameObject);
+            return;
         }
+
+        if (_instance == current)
+            return;
+
+        if (DestroyDuplicateInstance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = current;
+        if (PersistAcrossScenes)
+            DontDestroyOnLoad(gameObject);
     }
 
     protected virtual void OnApplicationQuit()
