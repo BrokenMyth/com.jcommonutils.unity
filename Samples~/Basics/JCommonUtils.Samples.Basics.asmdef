@@ -1,0 +1,7 @@
+{
+  "name": "JCommonUtils.Samples.Basics",
+  "references": [
+    "JCommonUtils.Core"
+  ],
+  "autoReferenced": false
+}

@@ -1,0 +1,8 @@
+{
+  "name": "JCommonUtils.Core",
+  "rootNamespace": "JCommonUtils",
+  "references": [],
+  "autoReferenced": true,
+  "overrideReferences": true,
+  "precompiledReferences": []
+}

@@ -1,11 +1,30 @@
-﻿{
+{
   "name": "com.jcommonutils.unity",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "displayName": "Common Utils",
-  "description": "A set of utility methods for Unity projects.",
-  "unity": "2020.3",
+  "description": "Unity utilities: hierarchy search, geometry, prefab pool lifecycles, editor performance capture and reports. Includes legacy events and singleton APIs.",
+  "unity": "2022.3",
   "author": {
     "name": "jiangqx",
     "url": "https://github.com/BrokenMyth/com.jcommonutils.unity.git"
-  }
+  },
+  "dependencies": {
+    "com.unity.ugui": "1.0.0",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.modules.imageconversion": "1.0.0",
+    "com.unity.modules.particlesystem": "1.0.0",
+    "com.unity.modules.jsonserialize": "1.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Core Basics",
+      "description": "Hierarchy, horizontal sectors, and explicitly owned prefab pools. No automatic scene setup.",
+      "path": "Samples~/Basics"
+    },
+    {
+      "displayName": "Editor Performance Capture",
+      "description": "Explicit capture and standalone JSON/HTML report export, without menus or gameplay dependencies.",
+      "path": "Samples~/Diagnostics"
+    }
+  ]
 }

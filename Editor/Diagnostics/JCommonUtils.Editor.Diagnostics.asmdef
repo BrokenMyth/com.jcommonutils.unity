@@ -1,0 +1,11 @@
+{
+  "name": "JCommonUtils.Editor.Diagnostics",
+  "rootNamespace": "JCommonUtils.Editor.Diagnostics",
+  "references": [],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "autoReferenced": true,
+  "overrideReferences": true,
+  "precompiledReferences": []
+}

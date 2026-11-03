@@ -1,0 +1,16 @@
+{
+  "name": "JCommonUtils.Tests.Editor",
+  "rootNamespace": "JCommonUtils.Tests",
+  "references": [
+    "CommonUtils",
+    "JCommonUtils.Core",
+    "JCommonUtils.Editor.Diagnostics"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "autoReferenced": false
+}
