@@ -22,7 +22,7 @@ https://github.com/BrokenMyth/com.jcommonutils.unity.git#v1.1.0
 | `JCommonUtils.Editor.Diagnostics` | 显式性能采样、统计与 JSON/HTML 报告 | 仅 Editor，Unity/.NET，不进入 Player |
 | `CommonUtils` | 已有事件、单例及旧工具 API | 保留旧命名空间；旧 JSON/UI 工具所需 Unity Newtonsoft/UGUI 已显式声明 |
 
-旧 `System.EventCenterSystem`、`MonoSingleton<T>`、`Singleton<T>` 等公开入口不改名。新 API 使用 `JCommonUtils.*`，由上层提供资源、玩法和第三方适配。包中原 Newtonsoft DLL 保留可覆盖属性以兼容既有布局，实际使用 Unity NuGet 包提供的版本；不要再人为添加同名非可覆盖 DLL。
+旧 `System.EventCenterSystem`、`MonoSingleton<T>`、`Singleton<T>` 等公开入口不改名。新 API 使用 `JCommonUtils.*`，由上层提供资源、玩法和第三方适配。旧 JSON 工具通过清单声明 Unity Newtonsoft 包；原同名 DLL 仍保留可覆盖属性以兼容既有布局，具体导入选择由 Unity 决定。新 Core 和 Diagnostics 不引用 JSON DLL；不要再人为添加同名非可覆盖 DLL。
 
 有 asmdef 的调用方需显式引用相应程序集；没有 asmdef 的 Assembly-CSharp 可直接使用运行时核心。不要让运行时 asmdef 引用 Editor.Diagnostics。
 
