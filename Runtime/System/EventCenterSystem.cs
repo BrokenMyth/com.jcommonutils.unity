@@ -47,7 +47,22 @@ namespace System
         {
             m_EventHandlers ??= new Dictionary<Type, List<Delegate>>();
             if (!m_EventHandlers.TryGetValue(typeof(T), out var funcs)) return;
-            for (var i = funcs.Count - 1; i >= 0; i--) funcs[i].DynamicInvoke(e);
+            for (var i = funcs.Count - 1; i >= 0; i--)
+            {
+                // Subscribe<T> 保证同一事件类型只保存 Action<T>；直接调用避免每个监听者的
+                // 反射参数数组与值类型事件装箱，仍按原逆序实时遍历，保留重入和取消订阅语义。
+                var callback = (Action<T>)funcs[i];
+                if (callback == null) throw new NullReferenceException();
+                try
+                {
+                    callback(e);
+                }
+                catch (Exception exception)
+                {
+                    // 保持 DynamicInvoke 的异常包装及中止分发行为，避免改变既有调用方的错误处理。
+                    throw new Reflection.TargetInvocationException(exception);
+                }
+            }
         }
 
         /// <summary>
